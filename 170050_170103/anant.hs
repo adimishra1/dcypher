@@ -155,7 +155,7 @@ searchfullstop oldf file  start  | start >= length (split file) = last((split fi
 
 fullstopcheck:: String -> Int -> String -> [Char] -> [Char] -> [Char]
 fullstopcheck file start oldf dict final | start >= (length (split file) - 1) = final
-                                         | last ((split file)!!start) == last(last(init (split file))) && isInfixOf ((split file)!!start) dict == False = final++(init ((split file)!!start))++". "++ fullstopcheck file (succ start) oldf dict final
+                                         | (length((split file)!!start) /= 0) && (last ((split file)!!start) == last(last(init (split file)))) && (isInfixOf ((split file)!!start) dict == False) = final++(init ((split file)!!start))++". "++ fullstopcheck file (succ start) oldf dict final
                                          | otherwise = final ++ ((split file)!!start) ++ " " ++ fullstopcheck file (succ start) oldf dict final
 
 finalkey file dict = (wordbyword (replaceWithKey (keymaker5 (replaceWithKey (keymaker4 (replaceWithKey (rfinder (nfinder (ifinder (hfinder (ofinder (afinder (startkey [(',',',')] file) file) file) file) file) file) file) file) (rfinder (nfinder (ifinder (hfinder (ofinder (afinder (startkey [(',',',')] file) file) file) file) file) file) file) (split dict) 0) file) (keymaker4 (replaceWithKey (rfinder (nfinder (ifinder (hfinder (ofinder (afinder (startkey [(',',',')] file) file) file) file) file) file) file) file) (rfinder (nfinder (ifinder (hfinder (ofinder (afinder (startkey [(' ',' ')] file) file) file) file) file) file) file) (split dict) 0) (split dict) 0) file) (keymaker5 (replaceWithKey (keymaker4 (replaceWithKey (rfinder (nfinder (ifinder (hfinder (ofinder (afinder (startkey [(',',',')] file) file) file) file) file) file) file) file) (rfinder (nfinder (ifinder (hfinder (ofinder (afinder (startkey [(',',',')] file) file) file) file) file) file) file) (split dict) 0) file) (keymaker4 (replaceWithKey (rfinder (nfinder (ifinder (hfinder (ofinder (afinder (startkey [(',',',')] file) file) file) file) file) file) file) file) (rfinder (nfinder (ifinder (hfinder (ofinder (afinder (startkey [(',',',')] file) file) file) file) file) file) file) (split dict) 0) (split dict) 0) (split dict) 0 (key1 file dict))
@@ -169,7 +169,7 @@ key1 file dict = (keymaker5 (replaceWithKey (keymaker4 (replaceWithKey (rfinder 
 
 main = do
       dict <- readFile "dictionary"
-      file <- readFile "goldBugCipherTest"
+      file <- readFile "goldbug_newtext.txt"
 
       startF <- getCurrentTime
       writeFile "tmp1.txt" (replaceWithKey (finalkey file dict) file)
