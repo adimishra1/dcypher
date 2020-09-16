@@ -1,6 +1,6 @@
-# CS251-Assignment-9
+# Dcypher
 
- Assignment 9 of CS251 - Haskell Cipher
+Dcypher is a decoder for decoding text encrypted with Gold-Bug cipher in Haskell with accuracy of 92% over the hidden test set. Used various heuristics like frequency, bigram and trigram analysis and hamming distance comparison to improve both running time and accuracy of the algorithm.
 
 ## Encrypted Text with normal Characters
 
