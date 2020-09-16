@@ -234,8 +234,8 @@ filesmallreplaced filetemp filetemp1 filetemp2 dict file = (replaceWithKey ((fin
 
 
 main = do
-        dict <- readFile "newsmall"
-        file <- readFile "newCipher.txt"
+        dict <- readFile "dictionary"
+        file <- readFile "neq1.txt"
 
         startF <- getCurrentTime
         writeFile "words500" (replaceourkey (cleanser file 0 ""))
